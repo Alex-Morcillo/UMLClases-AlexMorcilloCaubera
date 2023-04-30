@@ -3,13 +3,13 @@ Event <|-- Conference
 Event <|-- BoardMeeting
 Person <|-- Member
 Member <|-- BoardMember
-BoardMeeting -- BoardMember : : attendsTo
-Conference -- Person : attendsTo
-Event -- Member : attendsTo
-Location -- Event : isLocated in
-AAUOC o-- Location
-AAUOC o-- Event
-AAUOC o-- Person
+BoardMeeting "0..*" -- "0..*" BoardMember : : attendsTo
+Conference "0..*" -- "0..*" Person : attendsTo
+Event "0..*" -- "0..*" Member : attendsTo
+Location "1" -- "0..*" Event : isLocated in
+AAUOC o-- "0..*" Location
+AAUOC o-- "0..*" Event
+AAUOC o-- "0..*" Person
 
 class AAUOC {
 newLocation(l:Location) : void;
