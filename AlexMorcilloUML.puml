@@ -3,28 +3,48 @@ Event <|-- Conference
 Event <|-- BoardMeeting
 Person <|-- Member
 Member <|-- BoardMember
-BoardMeeting -- BoardMember
-Conference -- Person
-Event -- Member
-Location -- Event
+BoardMeeting -- BoardMember : : attendsTo
+Conference -- Person : attendsTo
+Event -- Member : attendsTo
+Location -- Event : isLocated in
 AAUOC o-- Location
 AAUOC o-- Event
 AAUOC o-- Person
 
 class AAUOC {
+newLocation(l:Location) : void;
+newEvent(e:Event) : void;
+newPerson(p:Person) : void;
+informEvent(e:Event) : void;
+register(m:Member,e:Event) : void;
 }
+
 class Member {
+e-mail : String;
 }
+
 class BoardMember {
 }
+
 class Event {
+date: Date;
+description: String;
+assign(l:Location) : void;
 }
+
 class Conference {
+max_attendees : Integer;
 }
+
 class BoardMeeting {
 }
+
 class Location {
+description : String;
+address : String;
 }
+
 class Person {
+name : String;
 }
 @enduml
